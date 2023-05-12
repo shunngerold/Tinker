@@ -37,6 +37,14 @@ Route::prefix('/admin')->middleware('isAdmin')->group(function() {
     Route::get('/mouse', [AdminController::class, 'showMouse'])->name('admin.mouse');
     // show products
     Route::get('/products', [AdminController::class, 'showProducts'])->name('admin.products');
+    // show computer finder full
+    Route::get('/computer-finder-full', [AdminController::class, 'showFinderFull'])->name('admin.finder.full');
+    // process computer finder full
+    Route::post('/computer-finder-full-process', [AdminController::class, 'processFinderFull'])->name('admin.finder.full.process');
+    // show computer finder unit
+    Route::get('/computer-finder-unit', [AdminController::class, 'showFinderUnit'])->name('admin.finder.unit');
+    // process computer finder full
+    Route::post('/computer-finder-unit-process', [AdminController::class, 'processFinderUnit'])->name('admin.finder.unit.process');
     // delete product
     Route::delete('/product/{products}', [AdminController::class, 'destroyProduct'])->where('products', '[0-9]+');
     // Data entry : each components
@@ -106,4 +114,14 @@ Route::prefix('/user')->group(function() {
     Route::get('/specific-product/{products}', [UserController::class, 'showSpecificProduct'])->where('products', '[0-9]+')->name('user.specific.product');
     // show computer finder page
     Route::get('/computer-finder', [UserController::class, 'showComputerFinder'])->name('user.computer.finder');
+    // show computer finder full setup page
+    Route::get('/computer-finder-full', [UserController::class, 'showComputerFinderFull'])->name('user.computer.finder.full');
+    // show computer finder unit page
+    Route::get('/computer-finder-unit', [UserController::class, 'showComputerFinderUnit'])->name('user.computer.finder.unit');
+    // filter computer finder unit page
+    Route::get('/filter-finder-unit', [UserController::class, 'filterComputerFinderUnit'])->name('user.filter.finder.unit');
+    // filter computer finder full page
+    Route::get('/filter-finder-full', [UserController::class, 'filterComputerFinderFull'])->name('user.filter.finder.full');
+    // filter specific finder page
+    Route::get('/filter-finder-specific/{finder}', [UserController::class, 'filterComputerFinderSpecific'])->where('computer_finders', '[0-9]+')->name('user.filter.finder.specific');
 });

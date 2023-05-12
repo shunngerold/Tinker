@@ -13,6 +13,16 @@
                     </a>
                 </div>
                 <div class="flex justify-center items-center gap-2 cursor-pointer cursor-pointer">
+                    <a href="{{ route('admin.finder.full') }}">
+                        <label for="category" class="cursor-pointer text-xl font-semibold">Finder (Full)</label>
+                    </a>
+                </div>
+                <div class="flex justify-center items-center gap-2 cursor-pointer cursor-pointer">
+                    <a href="{{ route('admin.finder.unit') }}">
+                        <label for="category" class="cursor-pointer text-xl font-semibold">Finder (Unit)</label>
+                    </a>
+                </div>
+                <div class="flex justify-center items-center gap-2 cursor-pointer cursor-pointer">
                     <a href="{{ route('admin.processor') }}">
                         <label for="category" class="cursor-pointer text-xl font-semibold">Processor</label>
                     </a>

@@ -7,6 +7,7 @@ use App\Models\BuildFull;
 use App\Models\BuildUnit;
 use App\Models\SavedBuilds;
 use Illuminate\Http\Request;
+use App\Models\ComputerFinder;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
 
@@ -122,5 +123,35 @@ class UserController extends Controller
     // Show computer finder page
     public function showComputerFinder() {
         return view('user.computer_finder');
+    }
+    // Show computer full finder page
+    public function showComputerFinderFull() {
+        return view('user.finder_full');
+    }
+    // Show computer unit finder page
+    public function showComputerFinderUnit() {
+        return view('user.finder_unit');
+    }
+    // Show computer unit finder page
+    public function filterComputerFinderUnit(Request $request) {
+        return view('user.finder_products_unit',[
+            'finder' => ComputerFinder::latest()
+            ->filter(request(['type','storage','endurance','budget','category','aesthetic']))
+            ->paginate(10)
+        ]);
+    }
+    // Show computer full finder page
+    public function filterComputerFinderFull(Request $request) {
+        // dd($request);
+        return view('user.finder_products_full',[
+            'finder' => ComputerFinder::latest()
+            ->filter(request(['type','storage','endurance','budget','category','peripherals']))
+            ->paginate(10)
+        ]);
+    }
+    // Show computer full finder page
+    public function filterComputerFinderSpecific(ComputerFinder $finder) {
+        // dd($finder);
+        return view('user.finder_specific',['finder' => $finder]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use Illuminate\Http\Request;
+use App\Models\ComputerFinder;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
@@ -338,10 +339,78 @@ class AdminController extends Controller
         // dd($products);
         return view('admin.product_list', ['products' => Products::latest()->paginate(5)]);
     }
-
     // delete product
     public function destroyProduct(Products $products) {
         $products->delete();
         return redirect(route('admin.products'))->with('message','Listing deleted successfully!');
+    }
+    // show computer finder full
+    public function showFinderFull() {
+        // dd(Products::all());
+        return view('admin.finder_full');
+    }
+    // show computer finder full
+    public function processFinderFull(Request $request) {
+        $formFields = $request->validate([
+            'processor_id' => ['required'],
+            'cpu_cooler_id' => ['required'],
+            'moba_id' => ['required'],
+            'memory_id' => ['required'],
+            'gpu_id' => ['required'],
+            'storage_id' => ['required'],
+            'power_supply_id' => ['required'],
+            'case_id' => ['required'],
+            'monitor_id' => ['required'],
+            'mouse_id' => ['required'],
+            'headset_id' => ['required'],
+            'keyboard_id' => ['required'],
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'type' => ['required'],
+            'storage' => ['required'],
+            'endurance' => ['required'],
+            'budget' => ['required'],
+            'peripherals' => ['required'],
+            'category' => ['required'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('finder_image','public');
+        }
+
+        ComputerFinder::create($formFields);
+        return redirect(route('admin.finder.full'))->with('message','Successfuly Added!');
+    }
+    // show computer finder unit
+    public function showFinderUnit() {
+        // dd(Products::all());
+        return view('admin.finder_unit');
+    }
+    // show computer finder unit
+    public function processFinderUnit(Request $request) {
+        $formFields = $request->validate([
+            'processor_id' => ['required'],
+            'cpu_cooler_id' => ['required'],
+            'moba_id' => ['required'],
+            'memory_id' => ['required'],
+            'gpu_id' => ['required'],
+            'storage_id' => ['required'],
+            'power_supply_id' => ['required'],
+            'case_id' => ['required'],
+            'case_fan_id' => ['required'],
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'type' => ['required'],
+            'storage' => ['required'],
+            'endurance' => ['required'],
+            'budget' => ['required'],
+            'aesthetic' => ['required'],
+            'category' => ['required'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('finder_image','public');
+        }
+
+        ComputerFinder::create($formFields);
+        return redirect(route('admin.finder.unit'))->with('message','Successfuly Added!');
     }
 }

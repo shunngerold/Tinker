@@ -154,4 +154,26 @@ class UserController extends Controller
         // dd($finder);
         return view('user.finder_specific',['finder' => $finder]);
     }
+    // Show computer full finder page
+    public function editProfile(User $user) {
+        // dd($user);
+        return view('user.user_edit',['user' => $user]);
+    }
+    // Show computer full finder page
+    public function editProfileProcess(Request $request, User $user) {
+        // dd($user);
+        $editFields = $request->validate([
+            'fname' => ['required'],
+            'lname' => ['required'],
+            'contact_number' => ['required'],
+            'email' => ['required','email'],
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        // Hash password
+        $editFields['password'] = bcrypt($editFields['password']);
+        $user->update($editFields);
+        
+        return redirect(route('user.profile'))->with('message','User updated successfully!');
+    }
 }

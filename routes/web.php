@@ -124,4 +124,8 @@ Route::prefix('/user')->group(function() {
     Route::get('/filter-finder-full', [UserController::class, 'filterComputerFinderFull'])->name('user.filter.finder.full');
     // filter specific finder page
     Route::get('/filter-finder-specific/{finder}', [UserController::class, 'filterComputerFinderSpecific'])->where('computer_finders', '[0-9]+')->name('user.filter.finder.specific');
+    // edit user profile
+    Route::get('/{user}/edit', [UserController::class, 'editProfile'])->where('users', '[0-9]+')->name('user.edit.profile');
+    // edit user profile -> process
+    Route::put('/{user}', [UserController::class, 'editProfileProcess'])->where('users', '[0-9]+')->name('user.edit.profile.process');
 });

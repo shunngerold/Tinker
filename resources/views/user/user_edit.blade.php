@@ -24,18 +24,29 @@
             <h1 class="text-3xl text-black font-bold mt-10">Personal Information</h1>
         </div>
         <div class="md:grid md:grid-cols-2 gap-5 p-5">
-            <div class="md:grid md:grid-cols-2 md:grid-rows-4 md:gap-2 px-20 md:py-10 py-5">
-                <label class="md:text-md text-xl font-semibold" for="fname">First name :</label>
-                <p name="fname">{{auth()->user()->fname}}</p>
-                <label class="md:text-md text-xl font-semibold" for="mname">Middle name :</label>
-                <p name="mname">{{auth()->user()->mname}}</p>
-                <label class="md:text-md text-xl font-semibold" for="lname">Last name :</label>
-                <p name="lname">{{auth()->user()->lname}}</p>
-                <label class="md:text-md text-xl font-semibold" for="contact_number">Contact Number :</label>
-                <p name="contact_number">{{auth()->user()->contact_number}}</p>
-                <label class="md:text-md text-xl font-semibold" for="email">E-mail :</label>
-                <p name="email">{{auth()->user()->email}}</p>
-            </div>
+            <form action="/user/{{ $user->id }}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="md:grid md:grid-cols-2 md:grid-rows-8 md:gap-2 px-20 md:py-10 py-5">
+                    <label class="md:text-md text-xl font-semibold" for="fname">First name :</label>
+                    <input class="border border-black" type="text" name="fname" value="{{ $user->fname }}" placeholder="Input First name"/>
+                    <label class="md:text-md text-xl font-semibold" for="mname">Middle name :</label>
+                    <input class="border border-black" type="text" name="mname" value="{{ $user->mname }}" placeholder="Input Middle Name"/>
+                    <label class="md:text-md text-xl font-semibold" for="lname">Last name :</label>
+                    <input class="border border-black" type="text" name="lname" value="{{ $user->lname }}" placeholder="Input Last Name"/>
+                    <label class="md:text-md text-xl font-semibold" for="contact_number">Contact Number :</label>
+                    <input class="border border-black" type="text" name="contact_number" value="{{ $user->contact_number }}" placeholder="Input Contact Number"/>
+                    <label class="md:text-md text-xl font-semibold" for="email">E-mail :</label>
+                    <input class="border border-black" type="text" name="email" value="{{ $user->email }}" placeholder="Input E-mail"/>
+                    <label class="md:text-md text-xl font-semibold" for="password">Password :</label>
+                    <input class="border border-black" type="password" name="password" value="{{ $user->password }} placeholder="Input Password"/>
+                    <label class="md:text-md text-xl font-semibold" for="password_confirmation">Confirm Password :</label>
+                    <input class="border border-black" type="password" name="password_confirmation" value="{{ $user->password }} placeholder="Confirm Password"/>
+                    <div class="mt-5 flex justify-start items-center">
+                        <input class="flex justify-center bg-orange-300 px-11 py-2 text-lg text-orange-800 font-bold border border-slate-600" type="submit" value="Update Profile">
+                    </div>
+                </div>
+            </form>
             <div class="flex justify-center items-center">
                 <div class="grid grid-cols-2 grid-rows-3 gap-5">
                     <a href="#" class="flex justify-center bg-orange-300 px-11 py-2 text-lg text-orange-800 font-bold border border-slate-600">Check Orders</a>

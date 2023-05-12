@@ -42,7 +42,7 @@
                 <div class="flex justify-center items-center">
                     <h1 class="md:text-5xl text-3xl text-orange-800 font-bold">{{ $title ?? False }}</h1>
                 </div>
-                <div class="py-10">
+                <div class="py-10 group">
                     @unless(count($products) == 0)
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:p-0 p-10 gap-4">
                             @foreach ($products as $product)

@@ -163,8 +163,9 @@ class UserController extends Controller
     public function editProfileProcess(Request $request, User $user) {
         // dd($user);
         $editFields = $request->validate([
-            'fname' => ['required'],
-            'lname' => ['required'],
+            'fname' => ['required','max:60'],
+            'lname' => ['required','max:60'],
+            'mname' => ['max:60'],
             'contact_number' => ['required'],
             'email' => ['required','email'],
             'password' => 'required|confirmed|min:8'

@@ -27,22 +27,82 @@
             <form action="/user/{{ $user->id }}" method="POST">
                 @method('PUT')
                 @csrf
-                <div class="md:grid md:grid-cols-2 md:grid-rows-8 md:gap-2 px-20 md:py-10 py-5">
-                    <label class="md:text-md text-xl font-semibold" for="fname">First name :</label>
-                    <input class="border border-black" type="text" name="fname" value="{{ $user->fname }}" placeholder="Input First name"/>
-                    <label class="md:text-md text-xl font-semibold" for="mname">Middle name :</label>
-                    <input class="border border-black" type="text" name="mname" value="{{ $user->mname }}" placeholder="Input Middle Name"/>
-                    <label class="md:text-md text-xl font-semibold" for="lname">Last name :</label>
-                    <input class="border border-black" type="text" name="lname" value="{{ $user->lname }}" placeholder="Input Last Name"/>
-                    <label class="md:text-md text-xl font-semibold" for="contact_number">Contact Number :</label>
-                    <input class="border border-black" type="text" name="contact_number" value="{{ $user->contact_number }}" placeholder="Input Contact Number"/>
-                    <label class="md:text-md text-xl font-semibold" for="email">E-mail :</label>
-                    <input class="border border-black" type="text" name="email" value="{{ $user->email }}" placeholder="Input E-mail"/>
-                    <label class="md:text-md text-xl font-semibold" for="password">Password :</label>
-                    <input class="border border-black" type="password" name="password" value="{{ $user->password }} placeholder="Input Password"/>
-                    <label class="md:text-md text-xl font-semibold" for="password_confirmation">Confirm Password :</label>
-                    <input class="border border-black" type="password" name="password_confirmation" value="{{ $user->password }} placeholder="Confirm Password"/>
-                    <div class="mt-5 flex justify-start items-center">
+                <div class="md:grid md:grid-rows-7 md:gap-2 px-20 md:py-10 py-5">
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="fname">First name :</label>
+                            <input class="border border-black" type="text" name="fname" value="{{ $user->fname }}" placeholder="Input First name"/>
+                        </div>
+                        <div class="flex justify-center">
+                            @error('fname')
+                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="mname">Middle name :</label>
+                            <input class="border border-black" type="text" name="mname" value="{{ $user->mname }}" placeholder="Input Middle Name"/>
+                        </div>
+                        <div class="flex justify-center">
+                            @error('mname')
+                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="lname">Last name :</label>
+                            <input class="border border-black" type="text" name="lname" value="{{ $user->lname }}" placeholder="Input Last Name"/>
+                        </div>
+                        <div class="flex justify-center">
+                            @error('lname')
+                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="contact_number">Contact Number :</label>
+                            <input class="border border-black" type="text" name="contact_number" value="{{ $user->contact_number }}" placeholder="Input Contact Number"/>
+                        </div>
+                        <div class="flex justify-center">
+                            @error('contact_number')
+                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="email">E-mail :</label>
+                            <input class="border border-black" type="text" name="email" value="{{ $user->email }}" placeholder="Input E-mail"/>
+                        </div>
+                        <div class="flex justify-center">
+
+                        </div>
+                        @error('email')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>                    
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="password">Password :</label>
+                            <input class="border border-black" type="password" name="password" value="{{ $user->password }} placeholder="Input Password"/>
+                        </div>
+                        <div class="flex justify-center">
+
+                        </div>
+                        @error('password')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="">
+                        <div class="flex justify-between items-center px-14">
+                            <label class="md:text-md text-xl font-semibold" for="password_confirmation">Confirm Password :</label>
+                            <input class="border border-black" type="password" name="password_confirmation" value="{{ $user->password }} placeholder="Confirm Password"/>
+                        </div>
+                    </div>
+                    <div class="mt-5 flex justify-start items-center px-14">
                         <input class="flex justify-center bg-orange-300 px-11 py-2 text-lg text-orange-800 font-bold border border-slate-600" type="submit" value="Update Profile">
                     </div>
                 </div>
